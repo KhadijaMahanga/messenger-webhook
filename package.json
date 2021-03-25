@@ -1,0 +1,24 @@
+{
+  "name": "trafficked-messenger-webhook",
+  "version": "1.0.0",
+  "description": "A test messenger webhook for trafficked.AFRICA facebook bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/KhadijaMahanga/messenger-webhook.git"
+  },
+  "keywords": [
+    "messenger",
+    "facebooks",
+    "webhook"
+  ],
+  "author": "khadija Mahanga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KhadijaMahanga/messenger-webhook/issues"
+  },
+  "homepage": "https://github.com/KhadijaMahanga/messenger-webhook#readme"
+}

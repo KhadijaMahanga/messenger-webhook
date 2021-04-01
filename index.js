@@ -1,11 +1,14 @@
 'use strict';
 
 // Imports dependencies and set up http server
-require('dotenv').config();
 const
+    dontenv = require('dotenv'),
     express = require('express'),
     bodyParser = require('body-parser'),
+    receive = require('./receive.js'),
     app = express().use(bodyParser.json());
+
+dontenv.config();
 
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
@@ -16,8 +19,21 @@ app.post('/webhook', (req, res) => {
     // Checks this is an event from a page subscription
     if (body.object === 'page') {
         body.entry.forEach(function(entry) {
+
             let webhook_event = entry.messaging[0];
-            console.log(webhook_event);
+
+            //sender PSID
+            let sender_psid = webhook_event.sender.id;
+            console.log('Sender PSID: ' + sender_psid);
+
+            // Check if the event is a message or postback and
+            // pass the event to the appropriate handler function
+            if (webhook_event.message) {
+                receive.handleMessage(sender_psid, webhook_event.message);
+            } else if (webhook_event.postback) {
+                receive.handlePostback(sender_psid, webhook_event.postback);
+            }
+
         });
         res.status(200).send('EVENT_RECEIVED');
     } else {

@@ -41,7 +41,6 @@ app.get('/webhook', (req, res) => {
             res.status(200).send(challenge);
 
         } else {
-            h
             res.sendStatus(403);
         }
     }
